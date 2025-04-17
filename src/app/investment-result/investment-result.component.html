@@ -1,5 +1,8 @@
-<p>Please enter some values and press 'Calculate'</p>
+<!-- <p *ngIf="!results">Please enter some values and press 'Calculate'</p> in older project -->
 
+@if (!results) {
+<p class="center">Please enter some values and press 'Calculate'</p>
+} @else {
 <table>
   <thead>
     <tr>
@@ -12,6 +15,15 @@
   </thead>
 
   <tbody>
-    <tr></tr>
+    @for (result of results; track result.year) {
+    <tr>
+      <td>{{ result.year }}</td>
+      <td>{{ result.valueEndOfYear | currency : "GBP" }}</td>
+      <td>{{ result.interest | currency : "GBP" }}</td>
+      <td>{{ result.totalInterest | currency : "GBP" }}</td>
+      <td>{{ result.totalAmountInvested | currency : "GBP" }}</td>
+    </tr>
+    }
   </tbody>
 </table>
+}
